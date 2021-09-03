@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.raxerz.news.ui.splash.SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_nnewsListFragment"
+            app:destination="@id/newsListFragment">
+            <argument
+                android:name="data"
+                app:argType="com.raxerz.news.data.model.NewsItem"/>
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/newsListFragment"
+        android:name="com.raxerz.news.ui.newslist.NewsListFragment"
+        tools:layout="@layout/fragment_news_list">
+    </fragment>
+
+</navigation>
