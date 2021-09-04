@@ -16,20 +16,22 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.raxerz.news.data.model.NewsItem
+import com.raxerz.news.databinding.FragmentSplashBinding
 import com.raxerz.news.utils.Resource
-import kotlinx.android.synthetic.main.fragment_splash.*
 
 class SplashFragment: Fragment() {
 
     private lateinit var newsListViewModel: NewsListViewModel
     private lateinit var navController: NavController
+    private var binding: FragmentSplashBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_splash, container, false)
+        val binding = FragmentSplashBinding.inflate(inflater, container, false)
+        val root = binding.root
         return root
     }
 
@@ -63,7 +65,7 @@ class SplashFragment: Fragment() {
 
     private fun handleSuccessState(resource: Resource<NewsItem>) {
         Log.d("SplashFragment", "Success")
-        progressBar.visibility = View.GONE
+        binding?.progressBar?.visibility = View.GONE
         resource.data?.toString()?.let { it1 -> Log.d("SplashFragment", it1) }
         resource.data?.let {
                 newsItems ->
@@ -80,12 +82,17 @@ class SplashFragment: Fragment() {
 
     private fun handleLoadingState() {
         Log.d("SplashFragment", "Loading")
-        progressBar.visibility = View.VISIBLE
+        binding?.progressBar?.visibility = View.VISIBLE
     }
 
     private fun handleErrorState(resource: Resource<NewsItem>) {
         Log.d("SplashFragment", "Error")
-        progressBar.visibility = View.VISIBLE
+        binding?.progressBar?.visibility = View.VISIBLE
         Toast.makeText(context, resource.message, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }

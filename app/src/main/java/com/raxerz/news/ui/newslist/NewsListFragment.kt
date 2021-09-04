@@ -7,20 +7,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.raxerz.news.R
 import com.raxerz.news.data.model.NewsItem
-import kotlinx.android.synthetic.main.fragment_news_list.*
+import com.raxerz.news.databinding.FragmentNewsListBinding
 
 class NewsListFragment: Fragment() {
 
     private lateinit var newsListAdapter: NewsListAdapter
+    private var binding: FragmentNewsListBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_news_list, container, false)
+        binding = FragmentNewsListBinding.inflate(inflater, container, false)
+        val root = binding?.root
         return root
     }
 
@@ -31,9 +32,9 @@ class NewsListFragment: Fragment() {
     }
 
     private fun setupUi(){
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        binding?.recyclerView?.layoutManager = LinearLayoutManager(context)
         newsListAdapter = NewsListAdapter(arrayListOf())
-        recyclerView.adapter = newsListAdapter
+        binding?.recyclerView?.adapter = newsListAdapter
     }
 
 

@@ -10,13 +10,17 @@ import com.bumptech.glide.Glide
 import com.raxerz.news.R
 import com.raxerz.news.data.model.NewsItem
 import com.raxerz.news.data.model.SingleNewsItem
+import com.raxerz.news.databinding.ItemNewsBinding
 import kotlinx.android.synthetic.main.item_news.view.*
 
 class NewsListAdapter(private val newsItems: ArrayList<SingleNewsItem>):
     RecyclerView.Adapter<NewsListAdapter.NewsListItemViewHolder>() {
 
+    private var binding: ItemNewsBinding? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsListItemViewHolder {
-        return NewsListItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false))
+        binding = ItemNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return NewsListItemViewHolder(binding!!)
     }
 
     override fun onBindViewHolder(holder: NewsListItemViewHolder, position: Int) {
@@ -33,7 +37,7 @@ class NewsListAdapter(private val newsItems: ArrayList<SingleNewsItem>):
     }
 
 
-    class NewsListItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    class NewsListItemViewHolder(binding: ItemNewsBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(newsItem: SingleNewsItem){
             itemView.apply {
                 Glide.with(imageView.context)
