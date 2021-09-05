@@ -7,10 +7,10 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class DataModule {
+open class DataModule {
     @Singleton
     @Provides
-    fun provideRemoteRepository(newsApi: NewsApi): NewslistRemoteRepository {
+    open fun provideRemoteRepository(newsApi: NewsApi): NewslistRemoteRepository {
         return NewslistRemoteRepository(newsApi)
     }
 }

@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class NetworkModule {
+open class NetworkModule {
 
     @Provides
     @Singleton

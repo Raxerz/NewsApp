@@ -7,4 +7,4 @@ import dagger.Module
     NetworkModule::class,
     DataModule::class
 ])
-class AppModule
+open class AppModule

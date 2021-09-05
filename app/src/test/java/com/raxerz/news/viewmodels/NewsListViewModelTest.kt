@@ -19,6 +19,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
+import javax.inject.Inject
 import kotlin.jvm.Throws
 
 @RunWith(AndroidJUnit4::class)
@@ -32,10 +33,10 @@ class NewsListViewModelTest {
     @Rule @JvmField var testSchedulerRule = RxJavaImmediateSchedulerRule()
 
 
-    private lateinit var mMockRepository: NewsListRepository
+    private lateinit var mMockRepository: NewslistRemoteRepository
 
-    @Mock
-    private lateinit var mNewsApi: NewsApi
+    @Inject
+    lateinit var mNewsApi: NewsApi
 
     @Before
     @Throws(Exception::class)

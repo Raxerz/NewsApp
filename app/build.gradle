@@ -100,6 +100,14 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:1.10.19'
     testImplementation "org.robolectric:robolectric:4.5.1"
 
+    // Using Dagger in androidTest and Robolectric too
+    testImplementation "com.google.dagger:dagger-compiler:2.0"
+    androidTestImplementation "com.google.dagger:dagger-compiler:2.0"
+    testAnnotationProcessor "com.google.dagger:dagger-compiler:2.0"
+    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:2.0"
+    kaptTest "com.google.dagger:dagger-compiler:2.0"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:2.0"
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
