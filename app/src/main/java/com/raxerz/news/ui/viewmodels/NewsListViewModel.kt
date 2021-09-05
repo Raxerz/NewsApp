@@ -6,11 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.raxerz.news.data.model.NewsItem
 import com.raxerz.news.data.repository.NewsListRepository
+import com.raxerz.news.data.repository.NewslistRemoteRepository
 import com.raxerz.news.utils.Resource
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class NewsListViewModel(private val repository:NewsListRepository): ViewModel() {
+class NewsListViewModel @Inject constructor(private val repository:NewslistRemoteRepository): ViewModel() {
     private val newsItems = MutableLiveData<Resource<NewsItem>>()
 
     init {

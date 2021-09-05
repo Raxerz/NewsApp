@@ -1,5 +1,6 @@
 package com.raxerz.news.ui.splash
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,21 +10,30 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.raxerz.news.R
-import com.raxerz.news.ui.base.ViewModelFactory
 import com.raxerz.news.ui.viewmodels.NewsListViewModel
 import com.raxerz.news.utils.UIState
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.raxerz.news.NewsApp
 import com.raxerz.news.data.model.NewsItem
 import com.raxerz.news.databinding.FragmentSplashBinding
 import com.raxerz.news.utils.Resource
+import javax.inject.Inject
 
 class SplashFragment: Fragment() {
 
-    private lateinit var newsListViewModel: NewsListViewModel
+    @Inject lateinit var modelFactory: ViewModelProvider.Factory
+
+    lateinit var newsListViewModel: NewsListViewModel
+
     private lateinit var navController: NavController
     private var binding: FragmentSplashBinding? = null
+
+    override fun onAttach(context: Context) {
+        (requireActivity().application as NewsApp).appComponent.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,7 +53,7 @@ class SplashFragment: Fragment() {
     }
 
     private fun setupViewModel(){
-        newsListViewModel = ViewModelProvider(this, ViewModelFactory())
+        newsListViewModel = ViewModelProvider(this, modelFactory)
             .get(NewsListViewModel::class.java)
     }
 
